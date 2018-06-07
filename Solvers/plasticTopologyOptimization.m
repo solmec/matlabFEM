@@ -1,4 +1,4 @@
-function [ xret ] = plasticTopologyOptimization( taskname, nodes, elems, elemClass, P, material, profile, supports, x, lx, ly, nx, ny )
+function [ xret ] = plasticTopologyOptimization( taskname, nodes, elems, elemClass, P, material, profile, supports, x, lx, ly, nx, ny, fpen, rmin  )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -12,9 +12,6 @@ c = 1;
 
 iter = 0;
 fig = figure;
-
-penf = 2.0;
-
 while true
 
     iter = iter+1;
@@ -53,9 +50,9 @@ else
 end
 
 
-[ elem_list, erased_elems, ais ] = elem2del3( nx, ny, erased_elems, GPdatas, material, nRemoved, x );
+[ elem_list, erased_elems, ais ] = elem2del3( nx, ny, erased_elems, GPdatas, material, nRemoved, x, rmin );
 
-x( elem_list ) = max( 0.01*profile.h, x( elem_list ).*ais( elem_list).^penf); % 1.5 is perfect!!!!
+x( elem_list ) = max( 0.01*profile.h, x( elem_list ).*ais( elem_list).^fpen); % 1.5 is perfect!!!!
 V = lx*ly*profile.h*sum(x)/nx/ny;
 
 colormap(gray), imagesc( flipud(-reshape(x,nx,ny)')), axis image, axis tight, axis off

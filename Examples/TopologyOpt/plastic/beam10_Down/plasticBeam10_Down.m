@@ -16,8 +16,8 @@ profile.h = 0.2286; % [m]
 lx=60.00; 
 ly=15.24;
 
-nx = 180;
-ny = 40;
+nx = 45;
+ny = 10;
 
 dx = lx/nx;
 dy = ly/ny;
