@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /mnt/lustre/home/ptauzow/Computations/Matlab/FEM/Examples/TopologyOpt/plastic/twoForces/
+OMP_NUM_THREADS=12
+/home/_PROGS/bin/matlab2013a -nodisplay -nodesktop -r "run /mnt/lustre/home/ptauzow/Computations/Matlab/FEM/Examples/TopologyOpt/plastic/twoForces/twoForces.m; quit"

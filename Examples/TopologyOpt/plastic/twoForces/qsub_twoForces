@@ -1,0 +1,2 @@
+#!/bin/bash
+qsub -l nodes=1:ppn=8,pmem=2GB,walltime=10000:00:00 -N twoForces  matlab_call_twoForces

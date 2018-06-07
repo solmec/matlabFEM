@@ -1,0 +1,13 @@
+{Undefined function 'savefig' for input arguments of type 'char'.
+
+Error in threeLoadMultiTopologtOptanalysis (line 27)
+%savefig(strcat(titlename,'_envelope'));
+
+Error in twoForces (line 113)
+cenv = threeLoadMultiTopologtOptanalysis( 'twoForces', nodes, elems,
+elemClassL4, mP, material, profile, supports, x, lx, ly, nx, ny );
+
+Error in run (line 64)
+evalin('caller', [script ';']);
+} 
+
