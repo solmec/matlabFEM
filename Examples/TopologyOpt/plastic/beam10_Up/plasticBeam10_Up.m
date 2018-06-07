@@ -108,37 +108,27 @@ Py = P0 * cos( al0 / 180.0 * pi );
 
 P( 2 * closestNode( nodes, [ lx / 2    ly ] ) - 1) = Px; % [N]
 P( 2 * closestNode( nodes, [ lx / 2 + dx   ly ] )- 1 ) = Px; % [N]
-P( 2 * closestNode( nodes, [ lx / 2 + 2*dx ly ] )- 1 ) = Px; % [N]
 P( 2 * closestNode( nodes, [ lx / 2 - dx   ly ] )- 1 ) = Px; % [N]
-P( 2 * closestNode( nodes, [ lx / 2 - 2*dx ly ] )- 1 ) = Px; % [N]
 
 P( 2 * closestNode( nodes, [ lx / 2    ly ] ) ) = Py; % [N]
 P( 2 * closestNode( nodes, [ lx / 2 + dx   ly ] ) ) = Py; % [N]
-P( 2 * closestNode( nodes, [ lx / 2 + 2*dx ly ] ) ) = Py; % [N]
 P( 2 * closestNode( nodes, [ lx / 2 - dx   ly ] ) ) = Py; % [N]
-P( 2 * closestNode( nodes, [ lx / 2 - 2*dx ly ] ) ) = Py; % [N]
 
 mP = [mP P];
 
 P( 2 * closestNode( nodes, [ lx / 2    ly ] ) - 1) = -Px; % [N]
 P( 2 * closestNode( nodes, [ lx / 2 + dx   ly ] )- 1 ) = -Px; % [N]
-P( 2 * closestNode( nodes, [ lx / 2 + 2*dx ly ] )- 1 ) = -Px; % [N]
 P( 2 * closestNode( nodes, [ lx / 2 - dx   ly ] )- 1 ) = -Px; % [N]
-P( 2 * closestNode( nodes, [ lx / 2 - 2*dx ly ] )- 1 ) = -Px; % [N]
 
 mP = [mP P];
 
 P( 2 * closestNode( nodes, [ lx / 2    ly ] ) - 1) = 0; % [N]
 P( 2 * closestNode( nodes, [ lx / 2 + dx   ly ] )- 1 ) = 0; % [N]
-P( 2 * closestNode( nodes, [ lx / 2 + 2*dx ly ] )- 1 ) = 0; % [N]
 P( 2 * closestNode( nodes, [ lx / 2 - dx   ly ] )- 1 ) = 0; % [N]
-P( 2 * closestNode( nodes, [ lx / 2 - 2*dx ly ] )- 1 ) = 0; % [N]
 
 P( 2 * closestNode( nodes, [ lx / 2    ly ] ) ) = P0; % [N]
 P( 2 * closestNode( nodes, [ lx / 2 + dx   ly ] ) ) = P0; % [N]
-P( 2 * closestNode( nodes, [ lx / 2 + 2*dx ly ] ) ) = P0; % [N]
 P( 2 * closestNode( nodes, [ lx / 2 - dx   ly ] ) ) = P0; % [N]
-P( 2 * closestNode( nodes, [ lx / 2 - 2*dx ly ] ) ) = P0; % [N]
 
 mP = [mP P];
 
