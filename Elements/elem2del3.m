@@ -1,4 +1,4 @@
-function [ elem_list, erased_elems, ais ] = elem2del3( nx, ny, erased_elems, GPdatas, material, limit, x );
+function [ elem_list, erased_elems, ais ] = elem2del3( nx, ny, erased_elems, GPdatas, material, limit, x, rmin )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -13,7 +13,7 @@ end
 
 %am = ais;
 
-rmin = 2;
+
 %am = designFilter( nodes, elems, rmin, ais, x );
 
 %am = designFilter( nx, ny, rmin, reshape(x, nx, ny)', reshape(ais, nx, ny)');

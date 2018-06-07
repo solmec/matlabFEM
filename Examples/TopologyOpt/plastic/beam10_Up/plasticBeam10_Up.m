@@ -16,8 +16,8 @@ profile.h = 0.2286; % [m]
 lx=60.00; 
 ly=15.24;
 
-nx = 45;
-ny = 10;
+nx = 90;
+ny = 20;
 
 dx = lx/nx;
 dy = ly/ny;
@@ -81,7 +81,7 @@ Pq = q * ly * profile.h / 4;
 % Probablistic load definition
 
 Pmu = 0.0;
-Psd = 3;
+Psd = 2;
 R = 0.9999;
 
 al0 =  Psd * norminv( (1+R)/2 ,Pmu,Psd )
@@ -144,7 +144,7 @@ mP = [mP P];
 
 tic
 
-cenv = multiLoadMultiTopologtOptanalysis( 'plasticBeam10_Up', nodes, elems, elemClassL4, mP, material, profile, supports, x, lx, ly, nx, ny );
+cenv = multiLoadMultiTopologtOptanalysis( 'plasticBeam10_Up', nodes, elems, elemClassL4, mP, material, profile, supports, x, lx, ly, nx, ny, 0.6, 1.75, 2 );
 
 cenv
 
