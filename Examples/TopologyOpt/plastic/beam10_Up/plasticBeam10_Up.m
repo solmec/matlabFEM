@@ -16,8 +16,8 @@ profile.h = 0.2286; % [m]
 lx=60.00; 
 ly=15.24;
 
-nx = 180;
-ny = 40;
+nx = 270;
+ny = 60;
 
 dx = lx/nx;
 dy = ly/ny;
@@ -134,9 +134,7 @@ mP = [mP P];
 
 tic
 
-cenv = multiLoadMultiTopologtOptanalysis( 'plasticBeam10_Up', nodes, elems, elemClassL4, mP, material, profile, supports, x, lx, ly, nx, ny, 0.6, 1.75, 2 );
-
-cenv
+params = multiParamsTopologtOptAnalysis( 'plasticBeam10_Up', nodes, elems, elemClassL4, mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 0.6, [1.5 1.75 2.0 3 4], [2 4 6] )
 
 toc
 
