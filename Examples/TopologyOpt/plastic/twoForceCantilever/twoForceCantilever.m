@@ -16,8 +16,8 @@ profile.h = 0.2286; % [m]
 lx=20; 
 ly=10;
 
-nx = 80;
-ny = 40;
+nx = 20;
+ny = 10;
 
 dx = lx/nx;
 dy = ly/ny;
@@ -175,7 +175,7 @@ mP = [mP P];
 
 tic
 
-cenv = multiLoadMultiTopologtOptanalysis( 'plasticTwoForceCantilever', nodes, elems, elemClassL4, mP, material, profile, supports, x, lx, ly, nx, ny );
+cenv = multiLoadMultiTopologtOptanalysis( 'plasticTwoForceCantilever', nodes, elems, elemClassL4, mP, material, profile, supports, x, lx, ly, nx, ny, 0.8, 2.0, 2 );
 
 cenv
 

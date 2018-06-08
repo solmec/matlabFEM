@@ -30,7 +30,7 @@ if ( corr == false )
     GPdatas      = GPdatasPrev;
     
     V = lx*ly*profile.h*sum(x)/nx/ny;
-    colormap(gray), imagesc( flipud(-reshape(x,nx,ny)')), axis image, axis tight, axis off
+    colormap(gray), contourf( -reshape(x,nx,ny)'), axis image, axis tight, axis off
     title(['Iter: ', num2str(iter),', nr: ', num2str(nRemoved),', Volume: ' num2str(V), ' m^3']);
 
     
@@ -55,7 +55,7 @@ end
 x( elem_list ) = max( 0.01*profile.h, x( elem_list ).*ais( elem_list).^fpen); % 1.5 is perfect!!!!
 V = lx*ly*profile.h*sum(x)/nx/ny;
 
-colormap(gray), imagesc( flipud(-reshape(x,nx,ny)')), axis image, axis tight, axis off
+colormap(gray), contourf( -reshape(x,nx,ny)'), axis image, axis tight, axis off
 title(['Iter: ', num2str(iter),', nr: ', num2str(nRemoved),', Volume: ' num2str(V), ' m^3']);
 
 %saveas(gcf,['plasticBeam2_', num2str(iter),'.png'] );

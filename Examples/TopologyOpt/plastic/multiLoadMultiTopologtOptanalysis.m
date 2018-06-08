@@ -23,10 +23,11 @@ end
 
 Venv = lx*ly*profile.h*sum(xenv)/nx/ny;
 
-colormap(gray), imagesc( flipud(-reshape(xenv,nx,ny)')), axis image, axis tight, axis off
+colormap(gray), contourf(-reshape(xenv,nx,ny)'), axis image, axis tight, axis off
 title(['Envelope, Volume: ' num2str(Venv), ' m^3']);
 saveas( gcf,strcat(titlename,'_envelope.png' ) );
 savefig(strcat(titlename,'_envelope'));
+save(strcat(titlename,'_envelope'));
 
 cenv   = zeros(nlcases,1);
 cmulti = zeros(nlcases,1);
