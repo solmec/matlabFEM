@@ -51,7 +51,6 @@ end
 
 
 [ elem_list, erased_elems, ais ] = elem2del3( nx, ny, erased_elems, GPdatas, material, nRemoved, x, rmin );
-
 x( elem_list ) = max( 0.01*profile.h, x( elem_list ).*ais( elem_list).^fpen); % 1.5 is perfect!!!!
 V = lx*ly*profile.h*sum(x)/nx/ny;
 

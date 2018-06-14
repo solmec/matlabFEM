@@ -134,7 +134,7 @@ mP = [mP P];
 
 tic
 
-params = multiParamsTopologtOptAnalysis( 'plasticBeam10_Up', nodes, elems, elemClassL4, mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 0.6, [1.5 1.75 2.0 3 4], [2 4 6] )
+params = multiParamsTopologtOptAnalysis( 'plasticBeam10_Up_one', nodes, elems, elemClassL4, mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 0.6, [1.0 1.25], [2 4 6] )
 
 toc
 
