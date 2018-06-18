@@ -70,7 +70,7 @@ function [ disp, GPdatas, corr ] = incrementalPlaneStressPlasticAnalysis( elemCl
        % plotMesh( nodes, elems, u );
         pconv = conv;
         conv  = norm( dP ) / norm( Fext )
-        if ( (conv > 100) || (iteration > 30) )
+        if ( (conv > 100) || ( iteration > 20 )  )
             corr = false;
             disp = u;
             return;

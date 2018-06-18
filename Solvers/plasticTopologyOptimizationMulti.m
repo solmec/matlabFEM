@@ -41,8 +41,8 @@ while true
             erased_elems = erasedPrev;
             GPdatas      = GPdatasPrev;
             V = lx*ly*profile.h*sum(x)/nx/ny;
-            colormap(gray), imagesc( flipud(-reshape(x,nx,ny)')), axis image, axis tight, axis off
-            title(['Iter: ', num2str(iter),', nr: ', num2str(nRemoved),', Volume: ' num2str(V), ' m^3']);
+            plotMap('top,'iter,x,nx,ny,V,V0,nRemoved,fpen,rmin);
+            plotMap('stress',iter,x,nx,ny,V,V0,nRemoved,fpen,rmin);
             disp(['Analysis finished correctly.' ]);
             saveas( gcf,[ taskname, '.png'] );
             save( taskname );
@@ -63,13 +63,12 @@ GPdatasPrev = GPdatas;
 
 
 x( elem_list ) = max( 0.01*profile.h, x( elem_list ).*ais( elem_list).^fpen); % 1.5 is perfect!!!!
+x( erased_elems ) = 0.01*profile.h;
 V = lx*ly*profile.h*sum(x)/nx/ny;
 
+plotMap('top',iter,x,nx,ny,V,V0,nRemoved,fpen,rmin);
 
-colormap(gray), imagesc( flipud(-reshape(x,nx,ny)')), axis image, axis tight, axis off
-title(['Iter: ', num2str(iter),', nr: ', num2str(nRemoved),', Volume: ' num2str(V), ' m^3']);
 %saveas(gcf,['plasticBeam2_', num2str(iter),'.png'] );
-
 
 pause(1e-6);
 

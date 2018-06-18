@@ -40,6 +40,13 @@ if size(sortID,1) < b+limit-1
     done = true;
     return;
 end
-elem_list = notErasedID( sortID( b:(b+limit-1) ) );
+
+if  limit > 0
+    erLimit = b:(b+limit-1);
+else
+    erLimit = [];
+end
+
+elem_list = notErasedID( sortID( erLimit ) );
 erased_elems( elem_list ) = true;
 done = false;

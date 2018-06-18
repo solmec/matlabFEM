@@ -2,7 +2,7 @@ function [ xret, ais ] = plasticTopologyOptimization2( taskname, nodes, elems, e
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
-nRemoved = 10;
+nRemoved = 40;
 rmBegin  = 1;
 erased_elems = false( size(elems,1), 1 );
 
@@ -23,6 +23,7 @@ while true
 
 if ( corr == false )
     rmBegin = rmBegin + nRemoved
+    fpen = fpen + 1
     x            = xPrev;
     erased_elems = erasedPrev;
     GPdatas      = GPdatasPrev;
@@ -31,6 +32,7 @@ else
     erasedPrev  = erased_elems;
     GPdatasPrev = GPdatas;
     rmBegin = 1
+    fpen = 2
 end
 
 [ elem_list, erased_elems, ais, done ] = elem2del4( nx, ny, erased_elems, GPdatas, material, nRemoved, rmBegin, x, rmin );
@@ -41,12 +43,7 @@ if done == true
     GPdatas      = GPdatasPrev;
     
     V = lx*ly*profile.h*sum(x)/nx/ny;
-    subplot(2,1,1),
-    colormap(jet), imagesc( -reshape(ais,nx,ny)'), axis image, axis tight, axis off, colorbar
-    title(['Iter: ', num2str(iter),', nr: ', num2str(nRemoved),', Volume: ' num2str(V/V0*100.0), ' %']);
-    subplot(2,1,2),
-    colormap(gray), contourf( -reshape(x,nx,ny)'), axis image, axis tight, axis off, colorbar
-    title(['Iter: ', num2str(iter),', nr: ', num2str(nRemoved),', Volume: ' num2str(V/V0*100.0), ' %']);
+    plotMaps(iter,ais,x,nx,ny,V,V0,nRemoved,fpen,rmin);
     
     disp(['Analysis finished correctly.' ]);
     saveas( gcf,[ taskname, '.png'] );
@@ -56,14 +53,9 @@ if done == true
     return
 else
     x( elem_list ) = max( 0.01 * profile.h, x( elem_list ).*ais( elem_list ).^fpen); % 1.5 is perfect!!!!
-    x( erased_elems ) = 0.01 * profile.h;
+    x( erased_elems ) = 0.01*profile.h;
     V = lx*ly*profile.h*sum(x)/nx/ny;
-    subplot(2,1,1),
-    colormap(jet), imagesc( -reshape(ais,nx,ny)'), axis image, axis tight, axis off, colorbar
-    title(['Iter: ', num2str(iter),', nr: ', num2str(nRemoved),', Volume: ' num2str(V/V0*100.0), ' %']);
-    subplot(2,1,2),
-    colormap(gray), contourf( -reshape(x,nx,ny)'), axis image, axis tight, axis off, colorbar
-    title(['Iter: ', num2str(iter),', nr: ', num2str(nRemoved),', Volume: ' num2str(V/V0*100.0), ' %']);
+    plotMaps(iter,ais,x,nx,ny,V,V0,nRemoved,fpen,rmin);
 end    
 
 %saveas(gcf,['plasticBeam2_', num2str(iter),'.png'] );

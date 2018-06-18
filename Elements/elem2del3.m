@@ -33,8 +33,10 @@ am = reshape(am', nx*ny,1);
 % end
 % end
 
+notErasedID = find( not( erased_elems ) );
+[sortVal, sortID] = sort( am( notErasedID ) );
+erased_elem_list = notErasedID( sortID( 1:min(limit,size(sortID,1) ) ) );
+erased_elems( erased_elem_list ) = true;
+elem_list = erased_elem_list;
 
-notErasedID = find( not( erased_elems));
-[sortVal, sortID] = sort( am( notErasedID));
-elem_list = notErasedID( sortID( 1:limit));
-erased_elems( elem_list) = true;
+end
