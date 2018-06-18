@@ -1,8 +1,9 @@
-function [ xret ] = plasticTopologyOptimization( taskname, nodes, elems, elemClass, P, material, profile, supports, x, lx, ly, nx, ny, fpen, rmin  )
+function [ xret ] = plasticTopologyOptimization( taskname, nodes, elems, elemClass, P, material, profile, supports, x, lx, ly, nx, ny, fpen, rmin, nRemoved, maxais )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
-nRemoved = 20;
+V0 = lx * ly * profile.h;
+
 erased_elems = false( size(elems,1), 1 );
 
 
@@ -30,14 +31,21 @@ if ( corr == false )
     GPdatas      = GPdatasPrev;
     
     V = lx*ly*profile.h*sum(x)/nx/ny;
-    colormap(gray), contourf( -reshape(x,nx,ny)'), axis image, axis tight, axis off
-    title(['Iter: ', num2str(iter),', nr: ', num2str(nRemoved),', Volume: ' num2str(V), ' m^3']);
-
+    plotMap('top',iter,x,nx,ny,V,V0,nRemoved,fpen,rmin);
+    saveas( gcf,[ taskname, '_top.png'] );
+    savefig([taskname '_top']);
+    figure;
+    plotMap('stress',iter,ais,nx,ny,V,V0,nRemoved,fpen,rmin);
+    saveas( gcf,[ taskname, '_stress.png'] );
+    savefig([taskname '_stress']);
+    er_elems = 1:size(elems,1);
+    er_elems( erased_elems ) = [];
+    [ enodes, eelems, nodes_list ] = eraseElems( nodes, elems, elem_list );
     
     disp(['Analysis finished correctly.' ]);
-    saveas( gcf,[ taskname, '.png'] );
+  
     save( taskname );
-    savefig(taskname);
+  
     xret = x;
     return
     
@@ -49,13 +57,16 @@ else
     
 end
 
-
 [ elem_list, erased_elems, ais ] = elem2del3( nx, ny, erased_elems, GPdatas, material, nRemoved, x, rmin );
+<<<<<<< HEAD
 x( elem_list ) = max( 0.01*profile.h, x( elem_list ).*ais( elem_list).^fpen); % 1.5 is perfect!!!!
+=======
+x( elem_list ) = max( 0.01*profile.h, x( elem_list ).*ais( elem_list ).^fpen); % 1.5 is perfect!!!!
+>>>>>>> d428cd07ce6a86f325edb82cbe258c100834e0fb
 V = lx*ly*profile.h*sum(x)/nx/ny;
+%x( erased_elems ) = 0.01*profile.h;
 
-colormap(gray), contourf( -reshape(x,nx,ny)'), axis image, axis tight, axis off
-title(['Iter: ', num2str(iter),', nr: ', num2str(nRemoved),', Volume: ' num2str(V), ' m^3']);
+plotMap('top',iter,x,nx,ny,V,V0,nRemoved,fpen,rmin);
 
 %saveas(gcf,['plasticBeam2_', num2str(iter),'.png'] );
 

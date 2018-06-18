@@ -3,10 +3,10 @@ function plotMap( type, iter, x, nx, ny, V, V0, nRemoved, fpen, rmin )
 %   Detailed explanation goes here
 
     if strcmp(type,'top')
-        colormap(gray), imagesc( -reshape(x,nx,ny)'), axis image, axis tight, axis off
+        colormap(gray), imagesc( flipud( -reshape(x,nx,ny)' ) ), axis image, axis tight, axis off
         title(makeTitle(iter, nRemoved, V, V0, fpen, rmin));
     elseif  strcmp(type,'stress')
-         colormap(jet), imagesc( reshape(x,nx,ny)'), axis image, axis tight, axis off
+         colormap(jet), imagesc( flipud( reshape(x,nx,ny)' ) ), axis image, axis tight, axis off, colorbar
          title(makeTitle(iter, nRemoved, V, V0, fpen, rmin));
     elseif  strcmp(type,'stress_cut')
             minx = min(x);
@@ -21,7 +21,7 @@ function plotMap( type, iter, x, nx, ny, V, V0, nRemoved, fpen, rmin )
             plotX = ais;
 
             map = [ 1 1 1; jet ];
-            colormap(map), imagesc( -reshape( plotX, nx, ny )'), axis image, axis tight, axis off
+            colormap(map), imagesc( flipud(-reshape( plotX, nx, ny )')), axis image, axis tight, axis off, colorbar
             title(makeTitle( iter, nRemoved, V, V0, fpen, rmin) );
     end
 

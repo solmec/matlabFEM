@@ -19,8 +19,8 @@ ly=15.24;
 %nx = 160;
 %ny = 60;
 
-nx = 160;
-ny = 40;
+nx = 90;
+ny = 20;
 
 dx = lx/nx;
 dy = ly/ny;
@@ -40,8 +40,9 @@ change = 1;
 iter = 0;
 c    = 0.3;
 
-V = lx*ly*profile.h*sum(x)/nx/ny;
-nRemoved = 5;
+V  = lx*ly*profile.h*sum(x)/nx/ny;
+v0 = V;
+nRemoved = 20;
 
     
 nelem = size(elems,1);
@@ -113,8 +114,26 @@ mP = [mP P];
 
 tic
 
-cenv = multiLoadMultiTopologtOptanalysis( 'plasticCantilever', nodes, elems, elemClassL4, mP, material, profile, supports, x, lx, ly, nx, ny );
+%cenv = multiLoadMultiTopologtOptanalysis( 'plasticCantilever', nodes, elems, elemClassL4, mP, material, profile, supports, x, lx, ly, nx, ny );
 
+%[ ~, ~, c ] = planeStressPlasticAnalysisCapacity( elemClassL4, nodes, elems, mP(:,3), material, profile, supports, x )
+
+c = 0.8125;
+
+parfor k=1:4
+    if k==1
+        x07 = plasticTopologyOptimizationD( 'densityTest_07_2_80', nodes, elems, elemClassL4, 0.8 * c * mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 0.7, 2, 10 , 0.002 );
+    end
+    if k==2
+        x1  = plasticTopologyOptimizationD( 'densityTest_10_2_10', nodes, elems, elemClassL4, 0.8 * c * mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 1.0, 2, 10 , 0.002 );
+    end
+    if k==3
+        x2  = plasticTopologyOptimizationD( 'densityTest_12_2_10', nodes, elems, elemClassL4, 0.8 * c * mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 1.2, 2, 10 , 0.002 );
+    end
+    if k==4
+        x5  = plasticTopologyOptimizationD( 'densityTest_15_2_10', nodes, elems, elemClassL4, 0.8 * c * mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 1.5, 2, 10 , 0.002 );
+    end
+end
 
 toc
 
