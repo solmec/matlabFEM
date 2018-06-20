@@ -35,9 +35,12 @@ if ( corr == false )
     saveas( gcf,[ taskname, '_top.png'] );
     savefig([taskname '_top']);
     figure;
-    plotMap('stress',iter,ais,nx,ny,V,V0,nRemoved,fpen,rmin);
-    saveas( gcf,[ taskname, '_stress.png'] );
-    savefig([taskname '_stress']);
+    plotMap('stress_micro',iter,ais,nx,ny,V,V0,nRemoved,fpen,rmin);
+    saveas( gcf,[ taskname, '_stress_micro.png'] );
+    savefig([taskname '_stress_micro']);
+    plotMap('stress_macro',iter,x.*ais,nx,ny,V,V0,nRemoved,fpen,rmin);
+    saveas( gcf,[ taskname, '_stress_macro.png'] );
+    savefig([taskname '_stress_macro']);
     er_elems = 1:size(elems,1);
     er_elems( erased_elems ) = [];
     [ enodes, eelems, nodes_list ] = eraseElems( nodes, elems, elem_list );
