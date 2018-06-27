@@ -16,8 +16,8 @@ profile.h = 0.2286; % [m]
 lx=60.00; 
 ly=15.24;
 
-nx = 180;
-ny = 40;
+nx = 90;
+ny = 20;
 
 dx = lx/nx;
 dy = ly/ny;
@@ -134,7 +134,27 @@ mP = [mP P];
 
 tic
 
-params = multiParamsTopologtOptAnalysis( 'plasticBeam10_Up_one', nodes, elems, elemClassL4, mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 0.6, [1.0 1.25], [2 4 6] )
+params = multiParamsTopologtOptAnalysis( 'plasticBeam10_Up_195', nodes, elems, elemClassL4, mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 0.95, [0.75 1.0 1.25 1.5 2.0], [2 4 6] )
+
+
+% [ ~, ~, c ] = planeStressPlasticAnalysisCapacity( elemClassL4, nodes, elems, mP(:,3), material, profile, supports, x )
+% 
+% c = 0.8125;
+% 
+% parfor k=1:4
+%     if k==1
+%         x07 = plasticTopologyOptimizationD( 'penalTest_s_07_2_10_095', nodes, elems, elemClassL4, 0.2 * c * mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 0.7, 2, 10 , 0.002 );
+%     end
+%     if k==2
+%         x1  = plasticTopologyOptimizationD( 'penalTest_s_10_2_10_095', nodes, elems, elemClassL4, 0.4 * c * mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 1.0, 2, 10 , 0.002 );
+%     end
+%     if k==3
+%         x2  = plasticTopologyOptimizationD( 'penalTest_s_12_2_10_095', nodes, elems, elemClassL4, 0.6 * c * mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 1.2, 2, 10 , 0.002 );
+%     end
+%     if k==4
+%         x5  = plasticTopologyOptimizationD( 'penalTest_s_15_2_10_095', nodes, elems, elemClassL4, 0.95 * c * mP(:,3), material, profile, supports, x, lx, ly, nx, ny, 1.5, 2, 10 , 0.002 );
+%     end
+% end
 
 toc
 

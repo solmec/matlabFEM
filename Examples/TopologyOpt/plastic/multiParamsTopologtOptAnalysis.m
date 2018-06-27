@@ -17,7 +17,7 @@ end
 ip=1;
 while ip < iparams
     parfor k=ip:min( ip + nthreads, iparams )
-        plasticTopologyOptimization( strcat( titlename,'_',int2str(k) ), nodes, elems, elemClass, lf * c * mP, material, profile, supports, x, lx, ly, nx, ny, params(k,1), params(k,2) );
+        plasticTopologyOptimizationD( strcat( titlename,'_',int2str(k) ), nodes, elems, elemClass, lf * c * mP, material, profile, supports, x, lx, ly, nx, ny, params(k,1), params(k,2), 10, 0.002 );
     end
     ip = ip + min(nthreads, iparams - ip ); 
 end
